@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Simple Quiz</title>
+</head>
+<body>
+<script>
+// --- Quiz data ---
+const questions = [
+    { question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], answer: "Paris" },
+    { question: "Who is the creator of Javascript?", options: ["Brendan Eich", "Guido van Rossum", "James Gosling", "Bjarne Stroustrup"], answer: "Brendan Eich" },
+    { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
+    { question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Mars" },
+    { question: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], answer: "Pacific Ocean" },
+    { question: "Who wrote 'Romeo and Juliet'?", options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"], answer: "William Shakespeare" },
+    { question: "What is the chemical symbol for water?", options: ["O2", "H2O", "CO2", "NaCl"], answer: "H2O" },
+    { question: "In which year did the Titanic sink?", options: ["1912", "1905", "1898", "1920"], answer: "1912" },
+    { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Silver"], answer: "Diamond" },
+    { question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], answer: "Leonardo da Vinci" },
+    { question: "What is the smallest prime number?", options: ["0", "1", "2", "3"], answer: "2" },
+    { question: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: "Carbon Dioxide" },
+    { question: "What is the currency of Japan?", options: ["Yen", "Dollar", "Euro", "Won"], answer: "Yen" }
+];
+
+// --- Logic ---
+const report = [];
+let score = 0;
+
+alert("Welcome to the Quiz! You’ll be asked " + questions.length + " questions.");
+
+for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    let text = "Q" + (i+1) + ": " + q.question + "\n";
+    for (let j = 0; j < q.options.length; j++) {
+        text += (j+1) + ". " + q.options[j] + "\n";
+    }
+    let ans = prompt(text + "\nEnter option number (1-" + q.options.length + "):");
+
+    // Clean input
+    const num = parseInt(ans);
+    let userAnswer = "No answer";
+    if (!isNaN(num) && num >= 1 && num <= q.options.length) {
+        userAnswer = q.options[num - 1];
+    }
+
+    if (userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+        score++;
+        alert("Correct!");
+    } else {
+        alert("Wrong! The correct answer is: " + q.answer);
+    }
+
+    report.push({
+        question: q.question,
+        answer: q.answer,
+        user_answer: userAnswer
+    });
+}
+
+alert("Quiz finished! You scored " + score + " out of " + questions.length + ".");
+
+// --- Download report.json ---
+const data = JSON.stringify(report, null, 4);
+const blob = new Blob([data], { type: "application/json" });
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+a.href = url;
+a.download = "report.json";
+a.click();
+URL.revokeObjectURL(url);
+</script>
+</body>
+</html>
