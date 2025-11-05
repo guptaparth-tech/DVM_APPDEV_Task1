@@ -93,11 +93,19 @@ body {
 
 
 /*search bar*/
+
+.search-form{
+  padding-left: 20px ;
+}
 .search-input {
+  background: #1b1b1d;
+  padding-right: 10px;
   padding: 8px 12px;
+  height: fit-content;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #373940;
   border-radius: 32px;
+  height: 40px;
   outline: none;
 }
 
@@ -145,7 +153,7 @@ body {
 .btn-secondary {
   background: #1b1b1b;
   color: white;
-  outline: 1px solid white;
+  border: 1px solid white;
 }
 
 .btn-secondary:hover{
@@ -230,6 +238,8 @@ body {
 }
 
 
+
+
 /*info2*/
 
 .info2{
@@ -291,7 +301,7 @@ body {
   width: 300px;
   height: 375px;
   border-radius: 16px;
-  outline: 0.5px solid #393e4a;
+  border: 0.5px solid #393e4a;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
@@ -350,6 +360,39 @@ body {
 
 .info4 a:hover{
   border-bottom: 1px solid #61dafb ;
+}
+
+
+/*video*/
+.video-container{
+  display: flex;
+  justify-content: center;
+  gap:20px;
+  
+}
+
+.card-video{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items:center ;
+  background: #242426;
+  border: #404756 1px solid;
+  border-radius:15px;
+  width:400px;
+  height:300px;
+  color:white;
+
+}
+
+
+
+
+
+.card-video .video{
+  height: 200px;
+  width:380px;
+  background: white;
 }
 
 /*meta-section*/
